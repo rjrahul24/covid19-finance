@@ -1,6 +1,6 @@
 --- 
-title: "YOUR TITLE HERE"
-author: "YOUR NAMES HERE"
+title: "Analysis of the US Stock Market through the COVID-19 Lens"
+author: "Gangadhara Reddy | Rahulraj Singh"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
