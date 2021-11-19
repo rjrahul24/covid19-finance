@@ -2,6 +2,8 @@ introduction
 data-sources
 data-transformation
 missing-values
+visualizing-missing-data-points
+checking-for-missing-values-of-stocks-of-apple-and-pfizer
 results
 interactive-component
 conclusion

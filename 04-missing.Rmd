@@ -1,1 +1,49 @@
 # Missing values
+
+```{r setup, include=FALSE}
+# this prevents package loading message from appearing in the rendered version of your problem set
+knitr::opts_chunk$set(warning = FALSE, message = FALSE,
+                      echo = TRUE)
+library(prophet)
+library(quantmod)
+library(forecast)
+library(ggplot2)
+library(plotly)
+library(tidyquant)
+library(tidyverse)
+library(patchwork)
+library(reshape2)
+library(lubridate)
+```
+
+### Visualizing missing data points
+
+Our project, the analysis of stock market data gathers data files from Bloomberg and Yahoo Finance. These are parts of highly processed and regularly maintained financial data on which thousands of people's personal financing decisions rely. Therefore, there are no missing values found on these data sets. 
+
+In the first section, I will use some historic stock data and run the missing plots function to check if there is any missing data.
+
+```{r }
+# Import the missing data function to this file for creating the plots
+source("missing_data_function.R")
+```
+
+## Checking for Missing Values of stocks of Apple and Pfizer
+
+For the analysis below, we imported 3 years of stock data for AAPL and PFE.
+
+```{r Data Preparation Apple}
+data_aapl <- getSymbols("AAPL", src="yahoo", from="2018-03-01", to="2021-10-31", auto.assign=FALSE)
+df_aapl = data.frame(date = index(data_aapl), data_aapl, row.names=NULL)
+head(df_aapl)
+```
+```{r Data Preparation PFE}
+data_pfe <- getSymbols("PFE", src="yahoo", from="2018-03-01", to="2021-10-31", auto.assign=FALSE)
+df_pfe = data.frame(date = index(data_pfe), data_pfe, row.names=NULL)
+head(df_pfe)
+```
+```{r Checking for Missing Values}
+missing_data_function(data_aapl)
+missing_data_function(data_pfe)
+```
+
+The output from these plots show us that the data we will be using for our analysis does not contain any missing values.
