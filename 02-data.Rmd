@@ -1,3 +1,100 @@
 # Data sources
 
-testing
+```{r, include = FALSE, echo = FALSE, results = 'hide'}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, echo = FALSE, results = 'hide')
+```
+
+```{r Package Imports}
+library(prophet)
+library(quantmod)
+library(forecast)
+library(dplyr)
+library(fGarch)
+library(ggplot2)
+library(plotly)
+library(tidyquant)
+library(BatchGetSymbols)
+library(readr)
+library(knitr)
+library(gridExtra)
+library(grid)
+```
+
+The primary focus of our project is to analyze the sentiment of the US Stock Market. This sentiment largely drives the prices of the stocks we will be analyzing throughout the project. The main sources of our data are Yahoo Finance and Bloomberg Finance. We have used this data in different forms throughout the project. At some places, we have downloaded the processed comma separated files provided by Yahoo Finance for historical data, while at times we have used R packages to directly scrap data from these web pages.
+
+Primary Data Sources:
+
+1. https://www.bloomberg.com/markets/stocks
+2. https://finance.yahoo.com/
+
+## R Packages for Scraping Finance Data
+
+### The getSymbols() Function
+
+getSymbols() is a CRAN package function available in Quantmod and is a wrapper to load data from various sources, local or remote. Current src methods available for the getSymbols function are: yahoo, google, MySQL, FRED, csv, RData, oanda, and av. In the example below we would show an example with Yahoo to capture data for Apple's stock prices.
+
+Below is a sample of the data we get directly using the getSymbols() function for Apple.
+
+
+```{r, echo=FALSE, results='asis'}
+data <- getSymbols("AAPL", src="yahoo", from="2021-03-01", to="2021-10-31", auto.assign=FALSE)
+df = data.frame(date = index(data), data, row.names=NULL)
+d1 <- head(df)
+knitr::kable(d1, caption = "Data from getSymbols", row.names = F,font_size = 6)
+```
+
+
+### BatchGetSymbols() Function
+
+Another interesting methodology of capturing data for multiple stocks at once in the BatchGetSymbols() package, made available within the same CRAN package (BatchGetSymbols). It locally stores a downloaded cache of the ticker symbols we call the function with. This data can then be used for analysis locally in the same session. Once the session is reset, we would need to run the code again to rebuild the cache.
+
+
+```{r function2}
+# set dates
+first.date <- Sys.Date() - 60
+last.date <- Sys.Date()
+freq.data <- 'daily'
+# set tickers
+tickers <- c('FB','MMM','PETR4.SA','abcdef')
+
+l.out <- BatchGetSymbols(tickers = tickers, 
+                         first.date = first.date,
+                         last.date = last.date, 
+                         freq.data = freq.data,
+                         cache.folder = file.path(tempdir(), 
+                                                  'BGS_Cache') ) # cache in tempdir()
+```
+
+After downloading the data, we can check the success of the process for each ticker. Notice that the last ticker does not exist in yahoo finance and therefore results in an error. All information regarding the download process is provided in the dataframe df.control:
+
+
+```{r, echo=FALSE, results='asis'}
+d2 <- l.out$df.control
+knitr::kable(d2, caption = "Combined Data from BatchGetSymbol Function", row.names = F,font_size = 6)
+```
+
+Moreover, this data can now easily be plotted and used for manipulation as well.
+
+
+```{r plotting function2}
+p <- ggplot(l.out$df.tickers, aes(x = ref.date, y = price.close))
+p <- p + geom_line()
+p <- p + facet_wrap(~ticker, scales = 'free_y') + xlab('Dates') + ylab('Prices')
+print(p)
+```
+
+Although this is a neat method to capture data for more then one ticker in the same function the cache functionality makes it difficult to use through multiple sessions. For this reason, we would not be using this method too often. But it is still handy, when one-time stock comparisons are needed (as shown above)
+
+## Structure of input Data
+
+Now, we will glance through the structure of the data we are going to be analyzing. Here, we have used a downloaded CSV file from Yahoo Finance that contains the same data fetched by the getSymbols() package. The downloaded CSV file can be found in the docs section.
+
+
+```{r, echo=FALSE, results='asis'}
+Nasdaq <- read_csv("data/Nasdaq.csv")
+d3 <- head(Nasdaq)
+knitr::kable(d3, caption = "Data from CSV download", row.names = F,font_size = 6)
+```
+
+
+We observe that the structure of both data are the same. We would therefore, be using these interchangeably in different scenarios. Structurally, there are no further changes at this point needed to these data sources.

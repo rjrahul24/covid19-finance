@@ -1,6 +1,13 @@
+tab:unnamed-chunk-4
+tab:unnamed-chunk-5
+tab:unnamed-chunk-6
 introduction
 problem-statement
 data-sources
+r-packages-for-scraping-finance-data
+the-getsymbols-function
+batchgetsymbols-function
+structure-of-input-data
 data-transformation
 missing-values
 visualizing-missing-data-points
