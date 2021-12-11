@@ -1,2 +1,14 @@
 # Conclusion
 
+Through the last six chapters we explored stock market data from various global equities and some key organizations of the United States. Keeping everything else aside, one thing is sure that the coronavirus pandemic raged through 2020 and continued throughout 2021 on the Stock Market. Our analysis showed that every market, every industry suffered significant losses throughout the pandemic. But, at the same time we also notice that some took this as an opportunity and bounced back to become better than ever. 
+
+To conclude the analysis, let us answer the key questions we stated in the first part of our analysis:
+
+- Analysis of repetitive patterns in companies to understand the impact of annual events (Christmas, Halloween, Black Friday, etc.) and quarterly events (dates of SOFR announcement, quarterly earnings report, etc.) on different industries.
+
+
+
+- Observe the people’s confidence in the stock market throughout COVID-19 by analysing the behaviour of stock fluctuations in various sectors of the economy (agriculture, healthcare, consumer good, electronics, technology, etc.)
+
+
+- Superimpose that analysis to specific companies that were in the news for production of vaccines. Analyse the difference in performance of vaccine-producing pharmaceutical companies to other industries throughout COVID-19.
