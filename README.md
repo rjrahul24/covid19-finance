@@ -32,4 +32,4 @@ g. [Conclusion and Future Work:](https://rjrahul24.github.io/covid19-finance/con
 
 ## Credits
 
-This repo was initially generated from a bookdown template available here: https://github.com/jtr13/EDAVtemplate and a special thanks to [Professor Joyce](https://github.com/jtr13) for the class, concepts and the opportunity for this open-source contribution. 
+This repo was initially generated from a this [bookdown template](https://github.com/jtr13/EDAVtemplate), and a special thanks to [Professor Joyce](https://github.com/jtr13) for the class, concepts and the opportunity for this open-source contribution. 
