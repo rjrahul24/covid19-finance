@@ -19,3 +19,4 @@ behavioural-stock-price-analytics-during-covid-19
 comparison-of-vaccine-developing-companies-against-others
 interactive-component
 conclusion
+future-directions-and-potential-work-items

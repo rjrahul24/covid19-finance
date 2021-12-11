@@ -6,9 +6,20 @@ To conclude the analysis, let us answer the key questions we stated in the first
 
 - Analysis of repetitive patterns in companies to understand the impact of annual events (Christmas, Halloween, Black Friday, etc.) and quarterly events (dates of SOFR announcement, quarterly earnings report, etc.) on different industries.
 
+The general analysis of events that have been occurring for many many years is seen on the market, but it cannot be compared to what diversions something like a pandemic shows on the market. We noticed that there have been only 3 noted instances of market volatility of this margin, namely the great depression, the attacks of 9/11 and this pandemic. No other situation or event created such a downfall in the world economy. 
 
+- Observe the people’s confidence in the stock market throughout COVID-19 by analyzing the behavior of stock fluctuations in various sectors of the economy (agriculture, healthcare, consumer good, electronics, technology, etc.)
 
-- Observe the people’s confidence in the stock market throughout COVID-19 by analysing the behaviour of stock fluctuations in various sectors of the economy (agriculture, healthcare, consumer good, electronics, technology, etc.)
-
+We noticed that the start of the pandemic declaration was a situation of panic for the investors and it affected every business sector almost equivalently. This is understood, since the time was uncertain and investors were worried about sustainability of the future of all organizations. But with time we see that the confidence rises, starting with a noticeable steep in technology stocks. Another sector that saw a rise was sustainable energy and development.  
 
 - Superimpose that analysis to specific companies that were in the news for production of vaccines. Analyse the difference in performance of vaccine-producing pharmaceutical companies to other industries throughout COVID-19.
+
+Vaccination was an important update in tackling the affects of the pandemic. It was that glimmer of hope people saw come in as pharmaceutical companies announced their vaccine productions. Although, what might come as a surprise is that Pfizer and Johnson & Johnson (2 already very established and strong companies) did not benefit much from their vaccine annoucements and productions. While on the other hand, BioNTech and Moderna showed very significant rise in their trade prices and trade volumes.
+
+## Future Directions and Potential Work Items
+
+While communicable diseases in general are not controllable to an extent, no one in their wild dreams would want to live through something like COVID-19 again. But, if this pandemic has taught us anything, it is the fact that we, humans, can overcome almost any adversity. So, it is important for the investors to keep their faith in the market. Having said that, in terms of the project enhancements, we propose the following work items that could be taken up at a future reference of time:
+
+- Study the reasons for rise in sustainable energy promoting organizations like Tesla. Does a pandemic induce general appreciation for the environment in people's minds?
+- What happens when companies declare bankruptcy in situations like these? For instance, an organization like Jet Airways in the Asian market.
+- What sector thrives with new IPOs, representing a rise in confidence from investors?

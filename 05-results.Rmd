@@ -92,7 +92,6 @@ returns('UPS', 2019)
 merged_returns <- merge.xts(PFE, BNTX, MRNA, JNJ, g, d, UPS)
 ```
 
-
 ```{r, echo=FALSE, results='asis'}
 
 dygraph(merged_returns, main = "Comparision of Returns") %>%
