@@ -1,1 +1,11 @@
 # Data transformation
+
+The data will be using for this project is already preprocessed by Bloomberg and Yahoo to eliminate the following conditions.
+
+- There are no missing or null values in the data.
+- There are no typos, miss-spellings since the data is numeric and has no missing entries.
+- Since date entries are supposed to be provided during data collection, there is no scope for excess data coming into the environment and hence we will not be dealing with cleaning excess data either.
+- We will although, be adding additional columns to the dataset for calculation returns, sharpe ratio, correlation and moving averages.
+
+## Additional Columns for calculating stock performance
+

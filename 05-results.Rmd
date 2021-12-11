@@ -1,1 +1,109 @@
+---
+output: html_document
+editor_options: 
+chunk_output_type: console
+---
+
 # Results
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(prophet)
+library(quantmod)
+library(forecast)
+library(tseries)
+library(timeSeries)
+library(dplyr)
+library(fGarch)
+library(ggplot2)
+library(plotly)
+library(DescTools)
+library(PerformanceAnalytics)
+library(dygraphs)
+library(makeR) # must be installed from source
+library(tidyquant)
+```
+
+
+
+## Analysis of Repetitive Patterns
+
+Let us start the analysis by studying the overall global picture that the coronavirus painted across all major stock markets. In the analysis below, we study about seven equity markets spread on the globe.
+
+- FTSE (London, United Kingdom) - The Financial Times Stock Exchange 100 Index, also called the FTSE 100 Index, FTSE 100, FTSE, or, informally, the "Footsie", is a share index of the 100 companies listed on the London Stock Exchange with the highest market capitalisation.
+- DAX (Frankfurt, Germany) - The DAX is a representation of the German (Frankfurt) Stock Exchange consisting majorly of the Bluechip organizations trading in Germany.
+- FEZ (Europe on New York Stock Exchange) - The FEX equity holds European stocks on the NYSE. This is, therefore, a unique equity to understand since it functions on cross-market sentiments.
+- 000001.SS - SSE Composite Index (Shanghai, China) - The SSE index is a representation of the Shanghai Stock Exchange and trades equities in the Chinese markets.
+- IXIC - Nasdaq Composit (United States) - The Nasdaq Composite is a stock market index that includes almost all stocks listed on the Nasdaq stock exchange. Along with the Dow Jones Industrial Average and S&P 500, it is one of the three most-followed stock market indices in the United States.
+- DJI (United States) - Dow Jones Industrial Average
+- N225 - Nikkei (Tokyo, Japan) - The Nikkei 225, or the Nikkei Stock Average, more commonly called the Nikkei or the Nikkei index, is a stock market index for the Tokyo Stock Exchange.
+
+
+```{r,echo=FALSE, results='asis', fig.width=8, fig.height=8}
+
+a = returns('^FTSE', 2019)
+b = returns('DAX', 2019)
+c = returns('FEZ', 2019)
+d = returns('000001.SS', 2019)
+e = returns('^IXIC', 2019)
+f = returns('^DJI', 2019)
+g = returns('^N225', 2019)
+
+merged_returns_two <- merge.xts(a, b, c, d, e, f, g)
+merged_returns_two <- na.omit(merged_returns_two) 
+
+dygraph(merged_returns_two, main = "Global Market Trends") %>%
+  dyAxis("y", label = "Returns") %>%
+  dyOptions(stackedGraph = TRUE)
+```
+
+## Behavioural Stock Price Analytics during COVID-19
+
+## Comparison of Vaccine Developing companies against others
+
+- Pfizer (Ticker: PFE)
+- BioNTech (Ticker: BNTX)
+- Moderna (Ticker: MRNA)
+- Johnson & Johnson (Ticker: JNJ)
+
+Comparison against
+
+- S&P 500 (Ticker: ^GSPC)
+- Dow Jones Industrial Average (Ticker: ^DJI)
+- Nasdaq Composite (Ticker: ^IXIC)
+- United Parcel Service (Ticker: UPS)
+- Toyota Motor Corporation (Ticker: TM)
+
+```{r}
+returns <- function(ticker, start_year) {
+  symbol <- getSymbols(ticker, src = 'yahoo', auto.assign = FALSE, warnings = FALSE)
+  data <- periodReturn(symbol, period = 'monthly', subset=paste(start_year, "::", sep = ""), type = 'log')
+  colnames(data) <- as.character(ticker)
+  assign(ticker, data, .GlobalEnv)
+}
+
+returns('PFE', 2019)
+returns('BNTX', 2019)
+returns('MRNA', 2019)
+returns('JNJ', 2019)
+g = returns('^GSPC', 2019)
+d = returns('^DJI', 2019)
+returns('UPS', 2019)
+
+merged_returns <- merge.xts(PFE, BNTX, MRNA, JNJ, g, d, UPS)
+```
+
+
+```{r, echo=FALSE, results='asis'}
+
+dygraph(merged_returns, main = "Comparision of Returns") %>%
+  dyAxis("y", label = "Return Percentage") %>%
+  dyOptions(colors = RColorBrewer::brewer.pal(7, "Set2"))
+
+```
+
+Observations from the chart above:
+- Pfizer, Moderna, Johnson & Johnson and BioNTech were the companies that announced their vaccine development programs early in 2021. 
+- In the period from November 2020 to February 2021, we see a drastic volatility in two of those four stocks, namely, Moderna and BioNTech. 
+- One anticipation for this result might be that BioNTech was actually co-developing the vaccine with Pfizer where Pfizer's role was to meet with production demands.
+- Johnson & Johnson was very late to the development and therefore, there is no volatility in it's stock.
+

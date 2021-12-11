@@ -9,9 +9,13 @@ the-getsymbols-function
 batchgetsymbols-function
 structure-of-input-data
 data-transformation
+additional-columns-for-calculating-stock-performance
 missing-values
 visualizing-missing-data-points
 checking-for-missing-values-of-stocks-of-apple-and-pfizer
 results
+analysis-of-repetitive-patterns
+behavioural-stock-price-analytics-during-covid-19
+comparison-of-vaccine-developing-companies-against-others
 interactive-component
 conclusion

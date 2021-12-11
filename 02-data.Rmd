@@ -20,12 +20,14 @@ library(gridExtra)
 library(grid)
 ```
 
-The primary focus of our project is to analyze the sentiment of the US Stock Market. This sentiment largely drives the prices of the stocks we will be analyzing throughout the project. The main sources of our data are Yahoo Finance and Bloomberg Finance. We have used this data in different forms throughout the project. At some places, we have downloaded the processed comma separated files provided by Yahoo Finance for historical data, while at times we have used R packages to directly scrap data from these web pages.
+The primary focus of our project is to analyze the sentiment of the US Stock Market. This sentiment largely drives the prices of the stocks we will be analyzing throughout the project. The main sources of our data are Yahoo Finance and Bloomberg Finance. We have used this data in different forms throughout the project. At some places, we have downloaded the processed comma separated files provided by Yahoo Finance for historical data, while at times we have used R packages to directly scrap data from these web pages. The [github repository](https://github.com/rjrahul24/covid19-finance/blob/main/02-data.Rmd) page for this chapter contains the code used.
 
 Primary Data Sources:
 
 1. https://www.bloomberg.com/markets/stocks
 2. https://finance.yahoo.com/
+
+The CSV files we are using across this analysis are stored in the [data](https://github.com/rjrahul24/covid19-finance/tree/main/data) folder of our repository. 
 
 ## R Packages for Scraping Finance Data
 
