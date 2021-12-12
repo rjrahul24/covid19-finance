@@ -1,6 +1,6 @@
-tab:unnamed-chunk-4
-tab:unnamed-chunk-5
 tab:unnamed-chunk-6
+tab:unnamed-chunk-7
+tab:unnamed-chunk-8
 introduction
 problem-statement
 data-sources
@@ -16,6 +16,8 @@ checking-for-missing-values-of-stocks-of-apple-and-pfizer
 results
 analysis-of-repetitive-patterns
 behavioural-stock-price-analytics-during-covid-19
+comparison-of-vaccine-developing-companies-against-others
+solving-the-problem-statement
 interactive-component
 conclusion
 future-directions-and-potential-work-items

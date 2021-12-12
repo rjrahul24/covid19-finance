@@ -1,0 +1,14 @@
+{
+  "name": "@ab2745b75d14b3d0/edav2021fall",
+  "main": "2e1b271375308613@261.js",
+  "version": "261.0.0",
+  "homepage": "https://observablehq.com/@ab2745b75d14b3d0/edav2021fall",
+  "author": {
+    "name": "Rahul Singh",
+    "url": "https://observablehq.com/@ab2745b75d14b3d0"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4"
+  }
+}

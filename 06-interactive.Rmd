@@ -1,3 +1,8 @@
 # Interactive component
 
 
+<iframe width="100%" height="408" frameborder="0"
+  src="https://observablehq.com/embed/@ab2745b75d14b3d0/edav2021fall?cells=EconomySectors"></iframe>
+  
+  
+

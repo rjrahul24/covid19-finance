@@ -24,7 +24,7 @@
 <meta name="author" content="Gangadhara Reddy | Rahulraj Singh" />
 
 
-<meta name="date" content="2021-12-11" />
+<meta name="date" content="2021-12-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -107,6 +107,8 @@
 <ul>
 <li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#analysis-of-repetitive-patterns"><i class="fa fa-check"></i><b>5.1</b> Analysis of Repetitive Patterns</a></li>
 <li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#behavioural-stock-price-analytics-during-covid-19"><i class="fa fa-check"></i><b>5.2</b> Behavioural Stock Price Analytics during COVID-19</a></li>
+<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#comparison-of-vaccine-developing-companies-against-others"><i class="fa fa-check"></i><b>5.3</b> Comparison of Vaccine Developing companies against others</a></li>
+<li class="chapter" data-level="5.4" data-path="results.html"><a href="results.html#solving-the-problem-statement"><i class="fa fa-check"></i><b>5.4</b> Solving the Problem Statement</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a>
@@ -148,7 +150,7 @@
 <p>getSymbols() is a CRAN package function available in Quantmod and is a wrapper to load data from various sources, local or remote. Current src methods available for the getSymbols function are: yahoo, google, MySQL, FRED, csv, RData, oanda, and av. In the example below we would show an example with Yahoo to capture data for Apple’s stock prices.</p>
 <p>Below is a sample of the data we get directly using the getSymbols() function for Apple.</p>
 <table>
-<caption><span id="tab:unnamed-chunk-4">Table 2.1: </span>Data from getSymbols</caption>
+<caption><span id="tab:unnamed-chunk-6">Table 2.1: </span>Data from getSymbols</caption>
 <thead>
 <tr class="header">
 <th align="left">date</th>
@@ -223,7 +225,7 @@
 <p>Another interesting methodology of capturing data for multiple stocks at once in the BatchGetSymbols() package, made available within the same CRAN package (BatchGetSymbols). It locally stores a downloaded cache of the ticker symbols we call the function with. This data can then be used for analysis locally in the same session. Once the session is reset, we would need to run the code again to rebuild the cache.</p>
 <p>After downloading the data, we can check the success of the process for each ticker. Notice that the last ticker does not exist in yahoo finance and therefore results in an error. All information regarding the download process is provided in the dataframe df.control:</p>
 <table>
-<caption><span id="tab:unnamed-chunk-5">Table 2.2: </span>Combined Data from BatchGetSymbol Function</caption>
+<caption><span id="tab:unnamed-chunk-7">Table 2.2: </span>Combined Data from BatchGetSymbol Function</caption>
 <thead>
 <tr class="header">
 <th align="left">ticker</th>
@@ -239,16 +241,16 @@
 <td align="left">FB</td>
 <td align="left">yahoo</td>
 <td align="left">OK</td>
-<td align="right">43</td>
-<td align="right">1.0000000</td>
+<td align="right">42</td>
+<td align="right">1.000000</td>
 <td align="left">KEEP</td>
 </tr>
 <tr class="even">
 <td align="left">MMM</td>
 <td align="left">yahoo</td>
 <td align="left">OK</td>
-<td align="right">43</td>
-<td align="right">1.0000000</td>
+<td align="right">42</td>
+<td align="right">1.000000</td>
 <td align="left">KEEP</td>
 </tr>
 <tr class="odd">
@@ -256,7 +258,7 @@
 <td align="left">yahoo</td>
 <td align="left">OK</td>
 <td align="right">41</td>
-<td align="right">0.9302326</td>
+<td align="right">0.952381</td>
 <td align="left">KEEP</td>
 </tr>
 </tbody>
@@ -270,7 +272,7 @@
 <h2><span class="header-section-number">2.2</span> Structure of input Data</h2>
 <p>Now, we will glance through the structure of the data we are going to be analyzing. Here, we have used a downloaded CSV file from Yahoo Finance that contains the same data fetched by the getSymbols() package. The downloaded CSV file can be found in the docs section.</p>
 <table>
-<caption><span id="tab:unnamed-chunk-6">Table 2.3: </span>Data from CSV download</caption>
+<caption><span id="tab:unnamed-chunk-8">Table 2.3: </span>Data from CSV download</caption>
 <thead>
 <tr class="header">
 <th align="left">Date</th>

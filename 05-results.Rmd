@@ -225,7 +225,7 @@ Master_Data_AutoCorrelations<-Master_Data_lags %>%
 gather(key = "lag", value = "lag_value", -c(Stock,Date, Close)) %>%
 mutate(lag = str_sub(lag, start = 5) %>% as.numeric) %>%
 group_by(Stock, lag) %>%
-summarize(
+dplyr::summarize(
 cor = cor(x = Close, y = lag_value, use = "pairwise.complete.obs"),
 cutoff_upper = 2/(n())^0.5,
 cutoff_lower = -2/(n())^0.5
@@ -306,11 +306,9 @@ merged_returns <- merge.xts(PFE, BNTX, MRNA, JNJ, g, d, UPS)
 ```
 
 ```{r Plot5, echo=FALSE, results='asis'}
-
 dygraph(merged_returns, main = "Comparision of Returns") %>%
   dyAxis("y", label = "Return Percentage") %>%
   dyOptions(colors = RColorBrewer::brewer.pal(7, "Set2"))
-
 ```
 
 Observations from the chart above:
@@ -319,3 +317,8 @@ Observations from the chart above:
 - One anticipation for this result might be that BioNTech was actually co-developing the vaccine with Pfizer where Pfizer's role was to meet with production demands.
 - Johnson & Johnson was very late to the development and therefore, there is no volatility in it's stock.
 
+## Solving the Problem Statement
+
+- At the start of this analysis, the expectation was that companies involved in some way with the vaccine or health management would have seen a significant rise in stock purchase but that did not happen. The stocks were steady for almost all sectors of the market.
+- We saw a rise in investment in the **sustainable energy** sector which could be an indicator for people's move towards **clean energy** as a result of this pandemic.
+- Organizations in **technology** saw a steep rise since the dependence of technology rose significantly through the last two years. 
