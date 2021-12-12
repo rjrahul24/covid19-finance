@@ -14,7 +14,7 @@ We noticed that the start of the pandemic declaration was a situation of panic f
 
 - Superimpose that analysis to specific companies that were in the news for production of vaccines. Analyse the difference in performance of vaccine-producing pharmaceutical companies to other industries throughout COVID-19.
 
-Vaccination was an important update in tackling the affects of the pandemic. It was that glimmer of hope people saw come in as pharmaceutical companies announced their vaccine productions. Although, what might come as a surprise is that Pfizer and Johnson & Johnson (2 already very established and strong companies) did not benefit much from their vaccine annoucements and productions. While on the other hand, BioNTech and Moderna showed very significant rise in their trade prices and trade volumes.
+Vaccination was an important update in tackling the affects of the pandemic. It was that glimmer of hope people saw come in as pharmaceutical companies announced their vaccine productions. Although, what might come as a surprise is that Pfizer and Johnson & Johnson (2 already very established and strong companies) did not benefit much from their vaccine announcements and productions. While on the other hand, BioNTech and Moderna showed very significant rise in their trade prices and trade volumes.
 
 ## Future Directions and Potential Work Items
 

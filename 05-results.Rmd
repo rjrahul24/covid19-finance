@@ -6,12 +6,16 @@ chunk_output_type: console
 
 # Results
 
+We finally reach the stage where we will be performing the actual analysis and solve the questions we presented in the Problem Statement at the start. We have divided this analysis into three broader segments and will be presenting objectives and outputs as we go along.
+
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(prophet)
 library(quantmod)
 library(forecast)
 library(tseries)
 library(timeSeries)
+library(plyr)
 library(dplyr)
 library(fGarch)
 library(ggplot2)
@@ -38,7 +42,7 @@ Let us start the analysis by studying the overall global picture that the corona
 - N225 - Nikkei (Tokyo, Japan) - The Nikkei 225, or the Nikkei Stock Average, more commonly called the Nikkei or the Nikkei index, is a stock market index for the Tokyo Stock Exchange.
 
 
-```{r,echo=FALSE, results='asis', fig.width=8, fig.height=8}
+```{r Plot 1,echo=FALSE, results='asis', fig.width=8, fig.height=8}
 
 a = returns('^FTSE', 2019)
 b = returns('DAX', 2019)
@@ -56,7 +60,216 @@ dygraph(merged_returns_two, main = "Global Market Trends") %>%
   dyOptions(stackedGraph = TRUE)
 ```
 
+
+**Key Observations from the analysis of Global Markets:**
+
+1. The foremost observation this graph gives us is the sudden fall in returns in April 2020. This was one of the biggest falls in US and the gloab Stock Market History and came just the day after WHO announced COVID-19 as a global pandemic.
+2. Again, in December 2020 - January 2021 we see a sudden high upside in all the returns. This was the moment when pharmaceuticals in Russia and the United States had announced their progress of vaccine programs.
+3. A common and not-so-expected trend we see is that all the major global markets followed the same trend throughout COVID-19. The same degree of fall and rise on all accounts. A question arises here, are all global markets always (regardless of any events) follow similar patterns of growth and demand?
+
+**Day Trade Patterns during the announcement of the Covid Outbreak and Vaccine Availability**
+
+Let us now look at the trading prices of some diversified sectors of economy to understand if we see any important patterns of data.
+
+```{r Plot2, results='asis', fig.height=8, fig.width=8}
+
+library("readxl")
+library(tidyr)
+library(reshape2)
+library(ggplot2)
+library(scales)
+
+close_price <- read_excel("data/Processed/ClosePrice.xlsx")
+close_price$Date <- as.Date(close_price$Date)
+
+ggplot(data = close_price, aes(x = close_price$Date)) +
+  geom_line(aes(y = close_price$Tesla, colour = "Tesla")) +
+  geom_line(aes(y = close_price$Pfizer, colour = "Pfizer")) +
+  geom_line(aes(y = close_price$Moderna, colour = "Moderna")) +
+  geom_line(aes(y = close_price$Apple, colour = "Apple")) +
+  geom_line(aes(y = close_price$Johnson_Johnson, colour = "Johnson_Johnson")) +
+  geom_line(aes(y = close_price$Goldman_Sachs, colour = "Goldman_Sachs")) +
+  geom_line(aes(y = close_price$`Archer-Daniels-Midland`, colour = "`Archer-Daniels-Midland")) +
+  geom_line(aes(y = close_price$CVS_Health, colour = "CVS_Health")) +
+  geom_line(aes(y = close_price$Ørsted, colour = "Ørsted")) +
+  scale_colour_manual("", 
+                      breaks = c("Tesla", 
+                                 "Pfizer", 
+                                 "Moderna",
+                                 "Apple",
+                                 "Johnson_Johnson",
+                                 "Goldman_Sachs",
+                                 "`Archer-Daniels-Midland",
+                                 "CVS_Health",
+                                 "Ørsted"),
+                      values = c("Tesla"="red", 
+                                 "Pfizer"="pink", 
+                                 "Moderna"="azure",
+                                 "Apple"="orange",
+                                 "Johnson_Johnson"="yellow",
+                                 "Goldman_Sachs"="blue",
+                                 "`Archer-Daniels-Midland"="magenta",
+                                 "CVS_Health"="violet",
+                                 "Ørsted"="grey")) +
+  xlab("Date") +
+  scale_y_continuous("Close Prices") + 
+  scale_x_date(date_breaks = "1 month", date_labels =  "%b %Y") +
+  labs(title="Day Trading impacts on announcement of COVID and Availability of Vaccines") +
+  theme(axis.text.x=element_text(angle=60, hjust=1)) +
+  geom_vline(xintercept = as.numeric(as.Date("2019-12-01"), linetype=4)) +
+  geom_vline(xintercept = as.numeric(as.Date("2020-11-09"), colour="green", linetype = "longdash"))
+
+```
+
+**Key Observations from the analysis of Global Markets:**
+
+1. The first observation from this analysis is that the performance of organizations did not get affected by the advent of the virus starting to spread in China, which is represented by the first black verticle line. 
+2. The steep decline only started after WHO officially declared COVID-19 a pandemic in March 2020. This stands with the observation we made above. 
+3. The second black vertical represents the annoucement of vaccine preparation and despatch and we see a rise soon after that point in almost all the stocks.
+4. A surprising note is that Johnson & Johnson and Pfizer stayed constant throughout COVID-19 despite all the news. It explains that the investor's sentiment did not align with vaccine news. 
+
 ## Behavioural Stock Price Analytics during COVID-19
+
+```{r Data Prep}
+# Data Preparation
+
+Pfizer = getSymbols("PFE", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+Pfizer = data.frame(date = index(Pfizer), Pfizer, row.names=NULL)
+colnames(Pfizer) <- c('Date', 'Open','High','Low', 'Close', 'Volume', 'Adjusted')
+Pfizer = cbind(Pfizer,Stock="")
+Pfizer$Stock = paste(Pfizer$Stock,"Pfizer",sep="")
+
+Moderna = getSymbols("MRNA", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+Moderna = data.frame(date = index(Moderna), Moderna, row.names=NULL)
+colnames(Moderna) <- c('Date','Open','High','Low', 'Close', 'Volume', 'Adjusted')
+Moderna = cbind(Moderna,Stock="")
+Moderna$Stock = paste(Moderna$Stock,"Moderna",sep="")
+
+Johnson_Johnson = getSymbols("JNJ", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+Johnson_Johnson = data.frame(date = index(Johnson_Johnson), Johnson_Johnson, row.names=NULL)
+colnames(Johnson_Johnson) <- c('Date', 'Open','High','Low', 'Close', 'Volume', 'Adjusted')
+Johnson_Johnson = cbind(Johnson_Johnson,Stock="")
+Johnson_Johnson$Stock = paste(Johnson_Johnson$Stock,"Johnson_Johnson",sep="")
+
+Prudential_Insurance = getSymbols("PRU", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+Prudential_Insurance = data.frame(date = index(Prudential_Insurance), Prudential_Insurance, row.names=NULL)
+colnames(Prudential_Insurance) <- c('Date', 'Open','High','Low', 'Close', 'Volume', 'Adjusted')
+Prudential_Insurance = cbind(Prudential_Insurance,Stock="")
+Prudential_Insurance$Stock = paste(Prudential_Insurance$Stock,"Prudential_Insurance",sep="")
+
+CVS_Health = getSymbols("CVS", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+CVS_Health = data.frame(date = index(CVS_Health), CVS_Health, row.names=NULL)
+colnames(CVS_Health) <- c('Date', 'Open','High','Low', 'Close', 'Volume', 'Adjusted')
+CVS_Health = cbind(CVS_Health,Stock="")
+CVS_Health$Stock = paste(CVS_Health$Stock,"CVS_Health",sep="")
+
+Walgreens_Boots = getSymbols("WBA", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+Walgreens_Boots = data.frame(date = index(Walgreens_Boots), Walgreens_Boots, row.names=NULL)
+colnames(Walgreens_Boots) <- c('Date', 'Open','High','Low', 'Close', 'Volume', 'Adjusted')
+Walgreens_Boots = cbind(Walgreens_Boots,Stock="")
+Walgreens_Boots$Stock = paste(Walgreens_Boots$Stock,"Walgreens_Boots",sep="")
+
+Master_Data = rbind(Pfizer, Moderna, Johnson_Johnson, Prudential_Insurance, CVS_Health, Walgreens_Boots)
+```
+
+One metric that helps us understand the behaviour of investing is the number of trades being executed during day trades. The trade volume for all the stocks will tell us if trade executions increased post some key announcements.
+
+```{r Plot 3, results='asis', fig.height=8, fig.width=8}
+
+ggplot(data = Master_Data, aes(x = Date, y = Volume)) +
+  geom_segment(aes(xend = Date, yend = 0, color = Volume)) + 
+  labs(title = "Trading Volumes Chart", 
+     subtitle = "Daily Trades Volumes highlighting 2 days - COVID pandemic Annoucement and Vaccine Building Annoucement", 
+     y = "Volume", x = "") +
+  theme_tq() +
+  facet_wrap(~ Stock) +
+  geom_vline(xintercept = as.numeric(as.Date("2019-12-01"), linetype=4)) +
+  geom_vline(xintercept = as.numeric(as.Date("2020-11-09"), colour="green", linetype = "longdash")) +
+  theme(legend.position = "none") 
+```
+
+**Trading Volumnes through COVID-19**
+
+1. Pfizer and Moderna are two stocks that saw steep rises during the annoucement of their respective vaccine programs. 
+2. We do not see any other significant movement on other market segments during this time which coincides with the analysis we have done so far. 
+
+
+```{r Plot4, echo=FALSE, results='asis', fig.width=8, fig.height=8}
+
+library(tidyr)
+library(stringr)
+
+k <- 1:450
+col_names <- paste0("lag_", k)
+
+## Only Select Columns "Date" and "Close" from hte master data frame.
+
+Master_Data_lags<-Master_Data%>%
+tibble::as_tibble() %>%
+group_by(Stock)
+
+Master_Data_lags<-Master_Data_lags%>%select(Date,Close)
+# Apply lag.xts function using tq_mutate
+
+Master_Data_lags<-Master_Data_lags%>%
+tq_mutate(
+select = Close,
+mutate_fun = lag.xts,
+k=1:450,
+col_rename=col_names
+)
+
+# Calculate the autocorrelations and 95% cutoffs
+
+Master_Data_AutoCorrelations<-Master_Data_lags %>%
+gather(key = "lag", value = "lag_value", -c(Stock,Date, Close)) %>%
+mutate(lag = str_sub(lag, start = 5) %>% as.numeric) %>%
+group_by(Stock, lag) %>%
+summarize(
+cor = cor(x = Close, y = lag_value, use = "pairwise.complete.obs"),
+cutoff_upper = 2/(n())^0.5,
+cutoff_lower = -2/(n())^0.5
+)
+
+## Visualisation of Autocorrelation: ACF Plot
+
+Master_Data_AutoCorrelations %>%
+ggplot(aes(x = lag, y = cor, color = Stock, group = Stock)) +
+
+# Add horizontal line a y=0
+geom_hline(yintercept = 0) +
+
+# Plot autocorrelations
+geom_point(size = 2) +
+geom_segment(aes(xend = lag, yend = 0), size = 1) +
+
+# Add cutoffs
+geom_line(aes(y = cutoff_upper), color = "blue", linetype = 2) +
+geom_line(aes(y = cutoff_lower), color = "blue", linetype = 2) +
+
+# Add facets
+facet_wrap(~ Stock, ncol = 3) +
+
+# Aesthetics
+expand_limits(y = c(-1, 1)) +
+scale_color_tq() +
+theme_tq() +
+labs(
+title = paste0("ACF Plot: Lags ", rlang::expr_text(k)),
+x = "Lags"
+) +
+theme(
+legend.position = "none",
+axis.text.x = element_text(angle = 45, hjust = 1),
+panel.grid.major = element_line(colour = "grey61", size = 0.5, linetype = "dotted"),
+plot.title = element_text(hjust = 0.5,size=18,colour="indianred4")
+)
+```
+
+**Plotting stock prices against 450 lag orders**
+
+1. Moderna is one stock that does shows a positive lag order throughout the time series signifying that prices were always unidirectional and were not affected by any of the events we discussed.
+2. All the other stocks do not show any significant patterns of upward or downward flow.
 
 ## Comparison of Vaccine Developing companies against others
 
@@ -92,7 +305,7 @@ returns('UPS', 2019)
 merged_returns <- merge.xts(PFE, BNTX, MRNA, JNJ, g, d, UPS)
 ```
 
-```{r, echo=FALSE, results='asis'}
+```{r Plot5, echo=FALSE, results='asis'}
 
 dygraph(merged_returns, main = "Comparision of Returns") %>%
   dyAxis("y", label = "Return Percentage") %>%
