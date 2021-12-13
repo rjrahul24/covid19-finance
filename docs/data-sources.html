@@ -154,7 +154,7 @@
 <p>getSymbols() is a CRAN package function available in Quantmod and is a wrapper to load data from various sources, local or remote. Current src methods available for the getSymbols function are: yahoo, google, MySQL, FRED, csv, RData, oanda, and av. In the example below we would show an example with Yahoo to capture data for Apple’s stock prices.</p>
 <p>Below is a sample of the data we get directly using the getSymbols() function for Apple.</p>
 <table>
-<caption><span id="tab:unnamed-chunk-9">Table 2.1: </span>Data from getSymbols</caption>
+<caption><span id="tab:unnamed-chunk-5">Table 2.1: </span>Data from getSymbols</caption>
 <thead>
 <tr class="header">
 <th align="left">date</th>
@@ -229,7 +229,7 @@
 <p>Another interesting methodology of capturing data for multiple stocks at once in the BatchGetSymbols() package, made available within the same CRAN package (BatchGetSymbols). It locally stores a downloaded cache of the ticker symbols we call the function with. This data can then be used for analysis locally in the same session. Once the session is reset, we would need to run the code again to rebuild the cache.</p>
 <p>After downloading the data, we can check the success of the process for each ticker. Notice that the last ticker does not exist in yahoo finance and therefore results in an error. All information regarding the download process is provided in the dataframe df.control:</p>
 <table>
-<caption><span id="tab:unnamed-chunk-10">Table 2.2: </span>Combined Data from BatchGetSymbol Function</caption>
+<caption><span id="tab:unnamed-chunk-6">Table 2.2: </span>Combined Data from BatchGetSymbol Function</caption>
 <thead>
 <tr class="header">
 <th align="left">ticker</th>
@@ -276,7 +276,7 @@
 <h2><span class="header-section-number">2.2</span> Structure of input Data</h2>
 <p>Now, we will glance through the structure of the data we are going to be analyzing. Here, we have used a downloaded CSV file from Yahoo Finance that contains the same data fetched by the getSymbols() package. The downloaded CSV file can be found in the docs section.</p>
 <table>
-<caption><span id="tab:unnamed-chunk-11">Table 2.3: </span>Data from CSV download</caption>
+<caption><span id="tab:unnamed-chunk-7">Table 2.3: </span>Data from CSV download</caption>
 <thead>
 <tr class="header">
 <th align="left">Date</th>
