@@ -1,8 +1,35 @@
 # Interactive component
 
+## Ideation and Study of Economic Sectors
+
+Across our analysis, we saw organizations and markets that were and were not affected by the pandemic. This study showed us some intuitive facts while also told a completely different story from our expectations. For instance, for one, we saw Moderna rising above average market rates while no change was seen on Pfizer. We saw sustainable technology and energy companies growing while aviation and hospitality organizations did not perform so well. 
+
+In this interactive plot we study the impact of the virus on entire sectors of companies, so now the organizations we studied earlier are grouped into their respective market sectors and we present an analysis of these complete segments.
+
+**Plotting Returns and Volumes against Time**
+
+In the below plot, height of the bars represents a standardized return rate of the stocks, while the density of the plots shows the volume of trades. 
 
 <iframe width="100%" height="408" frameborder="0"
   src="https://observablehq.com/embed/@ab2745b75d14b3d0/edav2021fall?cells=EconomySectors"></iframe>
-  
-  
 
+```{r echo = False, results='asis'}
+library(knitr)
+data = read_csv(file = 'data/processed/SectorDivison.csv')
+df = data.frame(data, row.names = NULL)
+kable(data[1:6,], caption="Sector Divison and Companies", row.names = F)
+```
+
+**Key Observations from studying sector-wise Data**
+
+1. Although returns and trade volumes are not varying a lot throughout time, we do see that sectors 100 and 200 have certain gaps in their trades through March.
+2. This states that sectors like Manufacturing, Production, Aviation and Auto Motors did see a decline in trade executions through the COVID-19 pandemic. 
+3. Finance and Healthcare we steady throughout and no significant patterns are seen.
+4. Technology and Sustainable Development are seen to be dense, suggesting these stocks saw a rise in trading.
+  
+## Link to the D3 Project Source Files
+
+Below links will redirect you to the javascript files and code we have used to build this chart and consequently we have also linked the interactive web development environment to interact with our code, live.
+
+- [D3 Code Repository](https://rjrahul24.github.io/covid19-finance/)
+- [Interactive IDE]()
