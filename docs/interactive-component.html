@@ -110,7 +110,11 @@
 <li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#comparison-of-vaccine-developing-companies-against-others"><i class="fa fa-check"></i><b>5.3</b> Comparison of Vaccine Developing companies against others</a></li>
 <li class="chapter" data-level="5.4" data-path="results.html"><a href="results.html#solving-the-problem-statement"><i class="fa fa-check"></i><b>5.4</b> Solving the Problem Statement</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
+<li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="interactive-component.html"><a href="interactive-component.html#ideation-and-study-of-economic-sectors"><i class="fa fa-check"></i><b>6.1</b> Ideation and Study of Economic Sectors</a></li>
+<li class="chapter" data-level="6.2" data-path="interactive-component.html"><a href="interactive-component.html#link-to-the-d3-project-source-files"><i class="fa fa-check"></i><b>6.2</b> Link to the D3 Project Source Files</a></li>
+</ul></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="conclusion.html"><a href="conclusion.html#future-directions-and-potential-work-items"><i class="fa fa-check"></i><b>7.1</b> Future Directions and Potential Work Items</a></li>
@@ -136,9 +140,78 @@
             <section class="normal" id="section-">
 <div id="interactive-component" class="section level1" number="6">
 <h1><span class="header-section-number">Chapter 6</span> Interactive component</h1>
+<div id="ideation-and-study-of-economic-sectors" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Ideation and Study of Economic Sectors</h2>
+<p>Across our analysis, we saw organizations and markets that were and were not affected by the pandemic. This study showed us some intuitive facts while also told a completely different story from our expectations. For instance, for one, we saw Moderna rising above average market rates while no change was seen on Pfizer. We saw sustainable technology and energy companies growing while aviation and hospitality organizations did not perform so well.</p>
+<p>In this interactive plot we study the impact of the virus on entire sectors of companies, so now the organizations we studied earlier are grouped into their respective market sectors and we present an analysis of these complete segments.</p>
+<p><strong>Plotting Returns and Volumes against Time</strong></p>
+<p>In the below plot, height of the bars represents a standardized return rate of the stocks, while the density of the plots shows the volume of trades.</p>
 <iframe width="100%" height="408" frameborder="0" src="https://observablehq.com/embed/@ab2745b75d14b3d0/edav2021fall?cells=EconomySectors">
 </iframe>
+<table>
+<caption><span id="tab:unnamed-chunk-20">Table 6.1: </span>Sector Divison and Companies</caption>
+<colgroup>
+<col width="5%" />
+<col width="34%" />
+<col width="59%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">Label</th>
+<th align="left">Sector</th>
+<th align="left">Companies</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">100</td>
+<td align="left">Manufacturing and Production</td>
+<td align="left">General Electric, Exxon Mobil, Gorilla Glue</td>
+</tr>
+<tr class="even">
+<td align="right">200</td>
+<td align="left">Aviation and Auto Motors</td>
+<td align="left">Delta Airlines, United Airlines, Toyota,</td>
+</tr>
+<tr class="odd">
+<td align="right">300</td>
+<td align="left">Finance</td>
+<td align="left">Goldman Sachs, JP Morgan</td>
+</tr>
+<tr class="even">
+<td align="right">400</td>
+<td align="left">Healthcare</td>
+<td align="left">CVS Health, Pfizer, Moderna, Prudential Insurance, Walgreens</td>
+</tr>
+<tr class="odd">
+<td align="right">500</td>
+<td align="left">Technology</td>
+<td align="left">Apple, Microsoft, Amazon, Google, Netflix</td>
+</tr>
+<tr class="even">
+<td align="right">600</td>
+<td align="left">Sustainable Energy and Agriculture</td>
+<td align="left">Tesla, Aramco, Conagra, Cargill, ADM</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key Observations from studying sector-wise Data</strong></p>
+<ol style="list-style-type: decimal">
+<li>Although returns and trade volumes are not varying a lot throughout time, we do see that sectors 100 and 200 have certain gaps in their trades through March.</li>
+<li>This states that sectors like Manufacturing, Production, Aviation and Auto Motors did see a decline in trade executions through the COVID-19 pandemic.</li>
+<li>Finance and Healthcare we steady throughout and no significant patterns are seen.</li>
+<li>Technology and Sustainable Development are seen to be dense, suggesting these stocks saw a rise in trading.</li>
+</ol>
+</div>
+<div id="link-to-the-d3-project-source-files" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Link to the D3 Project Source Files</h2>
+<p>Below links will redirect you to the javascript files and code we have used to build this chart and consequently we have also linked the interactive web development environment to interact with our code, live.</p>
+<ul>
+<li><a href="https://rjrahul24.github.io/covid19-finance/">D3 Code Repository</a></li>
+<li><a href="">Interactive IDE</a></li>
+</ul>
 
+</div>
 </div>
             </section>
 

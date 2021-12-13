@@ -43,8 +43,8 @@ df_pfe = data.frame(date = index(data_pfe), data_pfe, row.names=NULL)
 head(df_pfe)
 ```
 ```{r Checking for Missing Values}
-missing_data_function(data_aapl)
-missing_data_function(data_pfe)
+#missing_data_function(data_aapl, percent = TRUE)
+#missing_data_function(data_pfe, percent = TRUE)
 ```
 
 The output from these plots show us that the data we will be using for our analysis does not contain any missing values.

@@ -13,7 +13,7 @@ In the below plot, height of the bars represents a standardized return rate of t
 <iframe width="100%" height="408" frameborder="0"
   src="https://observablehq.com/embed/@ab2745b75d14b3d0/edav2021fall?cells=EconomySectors"></iframe>
 
-```{r echo = False, results='asis'}
+```{r, echo=FALSE, results='asis'}
 library(knitr)
 data = read_csv(file = 'data/processed/SectorDivison.csv')
 df = data.frame(data, row.names = NULL)

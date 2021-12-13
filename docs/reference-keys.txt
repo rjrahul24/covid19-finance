@@ -1,6 +1,7 @@
-tab:unnamed-chunk-6
-tab:unnamed-chunk-7
-tab:unnamed-chunk-8
+tab:unnamed-chunk-9
+tab:unnamed-chunk-10
+tab:unnamed-chunk-11
+tab:unnamed-chunk-20
 introduction
 problem-statement
 data-sources
@@ -19,5 +20,7 @@ behavioural-stock-price-analytics-during-covid-19
 comparison-of-vaccine-developing-companies-against-others
 solving-the-problem-statement
 interactive-component
+ideation-and-study-of-economic-sectors
+link-to-the-d3-project-source-files
 conclusion
 future-directions-and-potential-work-items
