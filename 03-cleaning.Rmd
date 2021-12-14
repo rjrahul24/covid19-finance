@@ -9,3 +9,6 @@ The data will be using for this project is already preprocessed by Bloomberg and
 
 ## Additional Columns for calculating stock performance
 
+- Returns: The daily return from a stock is defined as the position (hypothetical) you would have at the end of day's trade had you owned one share of the stock. Formula for Return = (Today's Return - Yesterday's Return)
+- Volatility: Volatility is a statistical measure of the dispersion of returns for a given security or market index. Annual volatility is the standard deviation of a stock's yearly logarithmic returns.
+- Addition of Sectors: We have combined stock data from various companies into their respective sectors. This is an operation done on Python and the data is put in the data folder.

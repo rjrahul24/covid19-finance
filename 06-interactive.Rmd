@@ -31,5 +31,5 @@ kable(data[1:6,], caption="Sector Divison and Companies", row.names = F)
 
 Below links will redirect you to the javascript files and code we have used to build this chart and consequently we have also linked the interactive web development environment to interact with our code, live.
 
-- [D3 Code Repository](https://rjrahul24.github.io/covid19-finance/)
-- [Interactive IDE]()
+- [D3 Code Repository](https://github.com/rjrahul24/covid19-finance/tree/main/JavaScript%20References)
+- [Interactive IDE](https://observablehq.com/@ab2745b75d14b3d0/edav2021fall@261)

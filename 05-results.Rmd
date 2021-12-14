@@ -317,6 +317,264 @@ Observations from the chart above:
 - One anticipation for this result might be that BioNTech was actually co-developing the vaccine with Pfizer where Pfizer's role was to meet with production demands.
 - Johnson & Johnson was very late to the development and therefore, there is no volatility in it's stock.
 
+
+```{r, fig.height=8, fig.width=8}
+
+#Software
+
+Apple = getSymbols("AAPL", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+Apple_df = data.frame(date = index(Apple), Apple, row.names=NULL)
+colnames(Apple_df) <- c('Date', 'Open','High','Low', 'Close', 'Volume', 'Adjusted')
+
+Microsoft = getSymbols("MSFT", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+Microsoft_df = data.frame(date = index(Microsoft), Microsoft, row.names=NULL)
+colnames(Microsoft_df) <- c('Date','Open','High','Low', 'Close', 'Volume', 'Adjusted')
+
+Alphabet = getSymbols("GOOG", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+Alphabet_df = data.frame(date = index(Alphabet), Alphabet, row.names=NULL)
+colnames(Alphabet_df) <- c('Date', 'Open','High','Low', 'Close', 'Volume', 'Adjusted')
+
+Adobe = getSymbols("ADBE", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+Adobe_df = data.frame(date = index(Adobe), Adobe, row.names=NULL)
+colnames(Adobe_df) <- c('Date', 'Open','High','Low', 'Close', 'Volume', 'Adjusted')
+
+Oracle = getSymbols("ORCL", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+Oracle_df = data.frame(date = index(Oracle), Oracle, row.names=NULL)
+colnames(Oracle_df) <- c('Date', 'Open','High','Low', 'Close', 'Volume', 'Adjusted')
+
+```
+
+
+```{r Plot6, results='asis', fig.height=8, fig.width=8}
+
+library(xts)
+library(dygraphs)
+Apple=xts(x=Apple_df$Close, order.by=Apple_df$Date)
+Microsoft=xts(x=Microsoft_df$Close, order.by=Microsoft_df$Date)
+Alphabet=xts(x=Alphabet_df$Close, order.by=Alphabet_df$Date)
+Adobe=xts(x=Adobe_df$Close, order.by=Adobe_df$Date)
+Oracle=xts(x=Oracle_df$Close, order.by=Oracle_df$Date)
+
+merged_Software <- merge.xts(Apple,Microsoft,Alphabet,Adobe,Oracle)
+dygraph(merged_Software)
+
+
+
+```
+Alphabet reached the lowest point 1056.62 on March 23, 2020. The stock price of Alphabet started to decrease from 1526.69 on February 19 to 1056.62 on March 23, 2020, which is the time when Covid started to increase in the United States, this depicts that the stock price of Alphabet had seen a steep fall in the stock price. While, after March 23, 2020, it started to bounce back and saw an increase. The smoothened version of the Alphabet shows the graph shows a steep increase in the stock price.
+While other companies like Microsoft, Apple, Adobe, and Oracle are relatively stable haven't seen much change in the stock price in the specified period above.
+
+
+```{r}
+
+#ECommerce
+
+Amazon = getSymbols("AMZN", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+Amazon_df = data.frame(date = index(Amazon), Amazon, row.names=NULL)
+colnames(Amazon_df) <- c('Date', 'Open','High','Low', 'Close', 'Volume', 'Adjusted')
+
+Shopify = getSymbols("SHOP", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+Shopify_df = data.frame(date = index(Shopify), Shopify, row.names=NULL)
+colnames(Shopify_df) <- c('Date', 'Open','High','Low', 'Close', 'Volume', 'Adjusted')
+
+Alibaba = getSymbols("BABA", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+Alibaba_df = data.frame(date = index(Alibaba), Alibaba, row.names=NULL)
+colnames(Alibaba_df) <- c('Date','Open','High','Low', 'Close', 'Volume', 'Adjusted')
+
+MercadoLibre= getSymbols("MELI", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+MercadoLibre_df = data.frame(date = index(MercadoLibre), MercadoLibre, row.names=NULL)
+colnames(MercadoLibre_df) <- c('Date', 'Open','High','Low', 'Close', 'Volume', 'Adjusted')
+
+Sea = getSymbols("SE", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+Sea_df = data.frame(date = index(Sea), Sea, row.names=NULL)
+colnames(Sea_df) <- c('Date', 'Open','High','Low', 'Close', 'Volume', 'Adjusted')
+
+```
+
+
+```{r Plot7, results='asis', fig.height=8, fig.width=8}
+
+library(xts)
+library(dygraphs)
+Amazon=xts(x=Amazon_df$Close, order.by=Amazon_df$Date)
+Shopify=xts(x=Shopify_df$Close, order.by=Shopify_df$Date)
+MercadoLibre=xts(x=MercadoLibre_df$Close, order.by=MercadoLibre_df$Date)
+Alibaba=xts(x=Alibaba_df$Close, order.by=Alibaba_df$Date)
+Sea=xts(x=Sea_df$Close, order.by=Sea_df$Date)
+
+merged_ECommerce <- merge.xts(Amazon,Shopify,MercadoLibre, Alibaba,Sea)
+dygraph(merged_ECommerce)
+
+
+
+```
+
+
+As seen earlier in the case of Alphabet, there is a similar kind of trend in the series of Amazon's stock price as well.
+
+After the fall of Amazon's stock price, in the span of the pandemic, the increase after mid-March is might be as the Companies started their work remotely, companies had acquired Cloud platforms such as AWS, which might have increased the stock price.
+Shopify and MercadoLibre had seen less change in the stock price, and as the People started Working from home, the needs had increased and people started to buy items online rather than going to the stores personally, which might be risky in the pandemic situation. So the stock prices have seen a significant increase since April 2020.
+
+Alibaba, Sea although having a low stock price, remained almost the same without much deviation throughout the span irrespective of the covid situation.
+
+
+```{r data prep 2}
+
+#DeliveryService
+
+FedEX = getSymbols("FDX", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+FedEX_df = data.frame(date = index(FedEX), FedEX, row.names=NULL)
+colnames(FedEX_df) <- c('Date', 'Open','High','Low', 'Close', 'Volume', 'Adjusted')
+
+UnitedParcelService= getSymbols("UPS", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+UnitedParcelService_df = data.frame(date = index(UnitedParcelService), UnitedParcelService, row.names=NULL)
+colnames(UnitedParcelService_df) <- c('Date', 'Open','High','Low', 'Close', 'Volume', 'Adjusted')
+
+BlueDart = getSymbols("BLUEDART.NS", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+BlueDart_df = data.frame(date = index(BlueDart),BlueDart, row.names=NULL)
+colnames(BlueDart_df) <- c('Date','Open','High','Low', 'Close', 'Volume', 'Adjusted')
+BlueDart_df$Open <- as.numeric(as.character(BlueDart_df$Open)) / 75.71
+BlueDart_df$High <- as.numeric(as.character(BlueDart_df$High)) / 75.71
+BlueDart_df$Low <- as.numeric(as.character(BlueDart_df$Low)) / 75.71
+BlueDart_df$Close <- as.numeric(as.character(BlueDart_df$Close)) / 75.71
+BlueDart_df$Adjusted <- as.numeric(as.character(BlueDart_df$Adjusted)) / 75.71
+
+DeutschePost= getSymbols("DPW.DE", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+DeutschePost_df = data.frame(date = index(DeutschePost), DeutschePost, row.names=NULL)
+colnames(DeutschePost_df) <- c('Date', 'Open','High','Low', 'Close', 'Volume', 'Adjusted')
+
+OsterreichischePost = getSymbols("POST.VI", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+OsterreichischePost_df = data.frame(date = index(OsterreichischePost),OsterreichischePost, row.names=NULL)
+colnames(OsterreichischePost_df) <- c('Date', 'Open','High','Low', 'Close', 'Volume', 'Adjusted')
+
+```
+
+
+
+
+```{r Plot8, results='asis', fig.height=8, fig.width=8}
+
+library(xts)
+library(dygraphs)
+FedEX=xts(x=FedEX_df$Close, order.by=FedEX_df$Date)
+UnitedParcelService=xts(x=UnitedParcelService_df$Close, order.by=UnitedParcelService_df$Date)
+BlueDart=xts(x=BlueDart_df$Close, order.by=BlueDart_df$Date)
+DeutschePost=xts(x=DeutschePost_df$Close, order.by=DeutschePost_df$Date)
+OsterreichischePost=xts(x=OsterreichischePost_df$Close, order.by=OsterreichischePost_df$Date)
+
+merged_DeliveryService <- merge.xts(FedEX,UnitedParcelService,BlueDart,DeutschePost,OsterreichischePost)
+dygraph(merged_DeliveryService)
+
+```
+
+
+As we know, the Covid pandemic badly affected the Courier services initially, Though FedEx is one the major companies in the delivery services. The stock price had seen a steep fall, while compared to other delivery services. On a whole, all the delivery services got impacted initially by the Covid pandemic.
+
+But later, FedEx bounced back to its normal stock price within 2 months might be due to the safety measures they have taken such as sanitizing the goods, which gave hope to people that it is safe enough to get the delivery from the services. After mid-march, FedEx didn't see the same kind of steep fall that.
+
+```{r Data Prep 3}
+#Airlines
+
+WizzAir = getSymbols("WIZZ.L", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+WizzAir_df = data.frame(date = index(WizzAir), WizzAir, row.names=NULL)
+colnames(WizzAir_df) <- c('Date', 'Open','High','Low', 'Close', 'Volume', 'Adjusted')
+WizzAir_df$Open <- as.numeric(as.character(WizzAir_df$Open)) *(5655.02/4272)
+WizzAir_df$High <- as.numeric(as.character(WizzAir_df$High)) *(5655.02/4272)
+WizzAir_df$Low <- as.numeric(as.character(WizzAir_df$Low))*(5655.02/4272)
+WizzAir_df$Close <- as.numeric(as.character(WizzAir_df$Close))*(5655.02/4272)
+WizzAir_df$Adjusted <- as.numeric(as.character(WizzAir_df$Adjusted))*(5655.02/4272)
+
+
+AllegiantAir= getSymbols("ALGT", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+AllegiantAir_df = data.frame(date = index(AllegiantAir), AllegiantAir, row.names=NULL)
+colnames(AllegiantAir_df) <- c('Date', 'Open','High','Low', 'Close', 'Volume', 'Adjusted')
+
+Ryanair = getSymbols("RYAAY", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+Ryanair_df = data.frame(date = index(Ryanair),Ryanair, row.names=NULL)
+colnames(Ryanair_df) <- c('Date','Open','High','Low', 'Close', 'Volume', 'Adjusted')
+
+AtlasAir= getSymbols("AAWW", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+AtlasAir_df = data.frame(date = index(AtlasAir), AtlasAir, row.names=NULL)
+colnames(AtlasAir_df) <- c('Date', 'Open','High','Low', 'Close', 'Volume', 'Adjusted')
+
+CopaHoldings = getSymbols("CPA", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+CopaHoldings_df = data.frame(date = index(CopaHoldings),CopaHoldings, row.names=NULL)
+colnames(CopaHoldings_df) <- c('Date', 'Open','High','Low', 'Close', 'Volume', 'Adjusted')
+
+```
+
+
+
+```{r Plot9, results='asis', fig.height=8, fig.width=8}
+
+library(xts)
+library(dygraphs)
+WizzAir=xts( x=WizzAir_df$Close, order.by=WizzAir_df$Date)
+AllegiantAir=xts(x=AllegiantAir_df$Close, order.by=AllegiantAir_df$Date)
+Ryanair=xts(x=Ryanair_df$Close, order.by=Ryanair_df$Date)
+AtlasAir=xts(x=AtlasAir_df$Close, order.by=AtlasAir_df$Date)
+CopaHoldings=xts(x=CopaHoldings_df$Close, order.by=CopaHoldings_df$Date)
+
+merged_Airlines <- merge.xts(WizzAir,AllegiantAir,Ryanair,AtlasAir,CopaHoldings)
+dygraph(merged_Airlines)
+
+```
+
+It is obvious that in the Month of February, as the Covid cases had increased, people might have thought that this is not the sector in which they should invest, as it would be so unpredictable, and in the month of March and April, there is steep fall for Wizz Air stock price, and then the Airlines started promoting that Airlines are the safest way of transport in the pandemic, as the Airlines are sanitizing the flights with disinfectants, so that covid will not spread across people in their journey. This might be the reason why the Airlines's stock price bounced back.
+
+Since some countries banned International travel the stock prices also don't have a clear trend. In this covid pandemic, the Airline stock prices seemed unpredictable. 
+
+```{r data prep 4}
+
+#RestaurantChains
+
+McDonald = getSymbols("MCD", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+McDonald_df = data.frame(date = index(McDonald),McDonald, row.names=NULL)
+colnames(McDonald_df) <- c('Date', 'Open','High','Low', 'Close', 'Volume', 'Adjusted')
+
+ChipotleMexicanGrill= getSymbols("CMG", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+ChipotleMexicanGrill_df = data.frame(date = index(ChipotleMexicanGrill), ChipotleMexicanGrill, row.names=NULL)
+colnames(ChipotleMexicanGrill_df) <- c('Date', 'Open','High','Low', 'Close', 'Volume', 'Adjusted')
+
+YumBrands = getSymbols("YUM", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+YumBrands_df = data.frame(date = index(YumBrands),YumBrands, row.names=NULL)
+colnames(YumBrands_df) <- c('Date','Open','High','Low', 'Close', 'Volume', 'Adjusted')
+
+DominosPizza= getSymbols("DPZ", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+DominosPizza_df = data.frame(date = index(DominosPizza), DominosPizza, row.names=NULL)
+colnames(DominosPizza_df) <- c('Date', 'Open','High','Low', 'Close', 'Volume', 'Adjusted')
+
+DardenRestaurants = getSymbols("DRI", src="yahoo", from="2019-09-01", to="2021-12-10", auto.assign=FALSE)
+DardenRestaurants_df = data.frame(date = index(DardenRestaurants),DardenRestaurants, row.names=NULL)
+colnames(DardenRestaurants_df) <- c('Date', 'Open','High','Low', 'Close', 'Volume', 'Adjusted')
+
+```
+
+
+
+```{r Plot10, results='asis', fig.height=8, fig.width=8}
+
+library(xts)
+library(dygraphs)
+McDonald=xts( x=McDonald_df$Close, order.by=McDonald_df$Date)
+ChipotleMexicanGrill=xts(x=ChipotleMexicanGrill_df$Close, order.by=ChipotleMexicanGrill_df$Date)
+YumBrands=xts(x=YumBrands_df$Close, order.by=YumBrands_df$Date)
+DominosPizza=xts(x=DominosPizza_df$Close, order.by=DominosPizza_df$Date)
+DardenRestaurants=xts(x=DardenRestaurants_df$Close, order.by=DardenRestaurants_df$Date)
+
+merged_RestaurantChains <- merge.xts(ChipotleMexicanGrill,DominosPizza,McDonald,YumBrands,DardenRestaurants)
+dygraph(merged_RestaurantChains)
+
+```
+
+
+Chipotle Mexican Grill has seen a steep fall during the first phase of the pandemic, Chipotle Mexican Grill being a more dine-in kind of restaurant rather than take away, the chain faced a steep fall in stock price since people were likely to avoid gathering places like eateries considering the pandemic situation.
+
+While Dominos Pizza had seen an increase in the stock price during this same first phase, opposite to that of happened with Chipotle Mexican Grill. It might be because most people order Dominos Pizza online rather than dining in the Chain. This might be the possible reason that the Dominos stock price did not see a steep fall.
+
+Additionally, the Global presence also might be one of the prominent reasons, Chipotle Mexican Grill being a prominent chain in the United States and some of the European Countries, and has less presence in other countries, the above-mentioned countries being most affected by Covid initially, people weren't interested in investing in that, while Dominos Pizza being a prominent chain in many countries, the stock prize seemed stable.
+
+
 ## Solving the Problem Statement
 
 - At the start of this analysis, the expectation was that companies involved in some way with the vaccine or health management would have seen a significant rise in stock purchase but that did not happen. The stocks were steady for almost all sectors of the market.

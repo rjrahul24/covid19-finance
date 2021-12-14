@@ -23,7 +23,7 @@ Our project, the analysis of stock market data gathers data files from Bloomberg
 
 In the first section, I will use some historic stock data and run the missing plots function to check if there is any missing data.
 
-```{r }
+```{r}
 # Import the missing data function to this file for creating the plots
 source("missing_data_function.R")
 ```
@@ -43,8 +43,8 @@ df_pfe = data.frame(date = index(data_pfe), data_pfe, row.names=NULL)
 head(df_pfe)
 ```
 ```{r Checking for Missing Values}
-#missing_data_function(data_aapl, percent = TRUE)
-#missing_data_function(data_pfe, percent = TRUE)
+missing_data_function(data_aapl, percent = TRUE)
+missing_data_function(data_pfe, percent = TRUE)
 ```
 
 The output from these plots show us that the data we will be using for our analysis does not contain any missing values.
